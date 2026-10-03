@@ -1927,7 +1927,7 @@ def test_where_attrs() -> None:
     x = xr.DataArray([1, 1], dims="x", attrs={"attr": "x"})
     y = xr.DataArray([0, 0], dims="x", attrs={"attr": "y"})
     actual = xr.where(cond, x, y, keep_attrs=True)
-    expected = xr.DataArray([1, 0], dims="x", attrs={"attr": "cond"})
+    expected = xr.DataArray([1, 0], dims="x", attrs={"attr": "x"})
     assert_identical(expected, actual)
 
 

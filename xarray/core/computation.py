@@ -1815,7 +1815,7 @@ def where(cond, x, y, keep_attrs: Union[bool, str] = None):
     if keep_attrs is None:
         keep_attrs = _get_keep_attrs(default=True)
 
-    return apply_ufunc(
+    result = apply_ufunc(
         duck_array_ops.where,
         cond,
         x,
@@ -1823,8 +1823,16 @@ def where(cond, x, y, keep_attrs: Union[bool, str] = None):
         join="exact",
         dataset_join="exact",
         dask="allowed",
-        keep_attrs=keep_attrs,
+        keep_attrs=False,
     )
+
+    if keep_attrs:
+        for obj in (x, y, cond):
+            if hasattr(obj, "attrs"):
+                result.attrs = obj.attrs.copy()
+                break
+
+    return result
 
 
 def polyval(coord, coeffs, degree_dim="degree"):
