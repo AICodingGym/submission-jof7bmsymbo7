@@ -1,0 +1,28 @@
+{
+    "reference_model": "LightGBM Experiment 3 - inspiration-only training",
+    "split_sha256": "e6c05db6b52c0c2bbb0d68b4cc1e47027d2bba163dbc77f9fa9e4769f2fe51d5",
+    "parameters": {
+        "deterministic": true,
+        "force_col_wise": true,
+        "learning_rate": 0.05,
+        "n_estimators": 300,
+        "n_jobs": 8,
+        "num_leaves": 31,
+        "objective": "regression_l1",
+        "random_state": 42,
+        "verbosity": -1
+    },
+    "groups": {
+        "reference": [],
+        "A": ["R_times_C", "R_div_C", "u_in_div_C", "u_in_times_R"],
+        "B": ["u_in_lag_10", "u_in_lag_15", "u_in_lag_20", "u_in_rolling_mean_5", "u_in_rolling_mean_10", "u_in_rolling_std_5"],
+        "C": ["R_times_C", "R_div_C", "u_in_div_C", "u_in_times_R", "u_in_lag_10", "u_in_lag_15", "u_in_lag_20", "u_in_rolling_mean_5", "u_in_rolling_mean_10", "u_in_rolling_std_5"]
+    },
+    "history_conventions": {
+        "missing_lags": 0,
+        "rolling_window": "trailing, including the current row, within each breath",
+        "rolling_min_periods": 1,
+        "rolling_std_ddof": 0,
+        "feature_dtype": "float32"
+    }
+}
